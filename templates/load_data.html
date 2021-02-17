@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+ <center><h1 class="mt-2">Machine Learning Analysis</h1></center>
+    <!-- Begin page content -->
+    <main role="main" class="container">
+
+        <!--Table -->
+
+        <h3>Data Table</h3>
+        <div class="container-fluid w-100">
+            <div style="overflow-x:auto;">
+         {% for table in tables %}
+        {{ table|safe }}
+        {% endfor %}
+            </div>
+            </div><br>
+        <hr>
+        <div>
+            <h4 style="float:left">Total Rows {{ row_no }}</h4>
+             <h4 style="float:right">Total Columns {{ col_no }}</h4><br>
+        </div>
+
+        <hr>
+
+
+
+         <form method="POST" action="/result" >
+
+              <div class="form-group">
+    <label for="exampleFormControlSelect1">Which Type Of Algo Classification/Regression: </label>
+    <select class="form-control" name="typeml" id="exampleFormControlSelect2">
+      <option>Regression</option>
+      <option>Classification</option>
+    </select>
+  </div>
+
+                <h5>Drop Unwanted Columns:</h5>
+             <p>Use ctrl to select/deselect items to remove unwanted columns</p>
+     <select id="mymultiselect" name="mymultiselect[]" class="form-select"
+             multiple aria-label="multiple select example">
+
+    {% for columns in columns %}
+
+  <option value={{columns}}>{{columns}}</option>
+
+       {% endfor %}
+   </select><br>
+
+    <label for="exampleFormControlSelect1">Select Your Target Variable For Prediction: </label><br>
+    <select class="form-control" name="target" id="exampleFormControlSelect1">
+       {% for columns in columns %}
+
+  <option>{{columns}}</option>
+
+       {% endfor %}
+    </select>
+
+
+      <p><input type="hidden" name="name" value= {{ file }}></p>
+      <p><input type="submit" value="Train_Model" class="btn btn-primary p-2 mb-4"></p>
+    </form>
+
+    </main>
+
+{% endblock %}

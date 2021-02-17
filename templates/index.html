@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+    <center><h1 class="mt-2">Regression And Classification </h1><hr></center>
+
+        <!-- Load Csv File-->
+      <h3>Upload your CSV And Excel file</h3>
+
+    <form method="POST" action="/" enctype="multipart/form-data">
+           <div class="form-group">
+    <label >Choose a data source: </label>
+    <select class="form-control" name="choose" id="exampleFormControlSelect2">
+      <option>CSV</option>
+      <option>EXCEL</option>
+    </select>
+  </div>
+
+      <p><input type="file" name="file"></p>
+      <p><input type="submit" value="Upload" class="btn btn-success"></p>
+    </form>
+
+      <p style="color:red"> {{ error }} </p>
+
+
+    </main>
+
+{% endblock %}
+

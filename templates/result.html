@@ -1,0 +1,76 @@
+
+{% extends 'layout.html' %}
+{% block body %}
+
+<style>
+  table tr{
+  color:white;
+  font-size:20px;
+  }
+
+</style>
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+      <h1 class="mt-5">Result Page</h1>
+
+
+      {% if ml == 'Classification' %}
+
+         <h1>Classification</h1>
+      <h6>** Its Not Accurate Result As It is just a Base Model; Just For Fun!! **</h6>
+          <table class="table" >
+  <thead>
+    <tr>
+      <th scope="col">Model_Name</th>
+      <th scope="col">f1score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LightGbm</td>
+      <td>{{ score_lgbm }}</td>
+    </tr>
+      <tr>
+        <td>Random_Forest</td>
+      <td>{{ score_rfc}}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+      {% elif ml == 'Regression' %}
+      <h1>Regression</h1>
+      <h6>** Its Not Accurate Result As It is just a Base Model; Just For Fun!! **</h6>
+          <table class="table" >
+  <thead>
+    <tr>
+      <th scope="col" >Model_Name</th>
+      <th scope="col">score</th>
+      <th scope="col">rmse</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LightGbm</td>
+      <td>{{ score_lgbm }}</td>
+      <td>{{rmse_lgbm}}</td>
+    </tr>
+      <tr>
+        <td>Random_Forest</td>
+      <td>{{ score_rfr }}</td>
+      <td>{{rmse_rfr}}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+      {% endif %}
+
+      <a href="/" class="btn btn-success">Go Back And Predict New Data</a>
+
+    </main>
+
+{% endblock %}
